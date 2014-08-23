@@ -10,6 +10,8 @@ My playbooks
 - ruby v 2.1.1
 - postgres
 
--- Command
+## Command
 
-``` ansible-playbook site.yml -i hosts --ask-sudo-pass
+```
+ ansible-playbook site.yml -i hosts --ask-sudo-pass
+```
