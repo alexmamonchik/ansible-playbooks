@@ -1,0 +1,9 @@
+---
+
+- name: Install ruby and dependencies
+  hosts: all
+  user: deploy
+
+  roles:
+    - git
+
