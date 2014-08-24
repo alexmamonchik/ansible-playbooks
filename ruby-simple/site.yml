@@ -7,4 +7,5 @@
   roles:
     - git
     - nginx
+    - zzet.rbenv
 
