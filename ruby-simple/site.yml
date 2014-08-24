@@ -2,10 +2,12 @@
 
 - name: Install ruby and dependencies
   hosts: all
-  user: deploy
+  remote_user: deploy
+  sudo: yes
 
   roles:
     - git
     - nginx
     - zzet.rbenv
+    - pjan.vandaele.postgresql
 

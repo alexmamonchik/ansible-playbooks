@@ -6,13 +6,13 @@ My playbooks
 - nginx
 - git
 - rbenv (used zzet.rbenv role from ansible-galaxy)
-- ruby-build
-- ruby v 2.1.1
-- postgres
+- ruby v 2.0.0-p481
+- postgres (used pjan.vandaele.postgresql role from ansible-galaxy)
 
 ## Command
 
 ```
 $ ansible-galaxy install zzet.rbenv
+$ ansible-galaxy install pjan.vandaele.postgresql
 $ ansible-playbook site.yml -i hosts --ask-sudo-pass
 ```
