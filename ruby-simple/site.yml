@@ -13,7 +13,7 @@
 
   roles:
           #    - git
-          #    - nginx
+    - nginx
     - users
     - sudo
     - deploy
