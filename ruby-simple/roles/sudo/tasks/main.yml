@@ -1,0 +1,11 @@
+- name: Copy sudoers file for safety
+  command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+- name: Create sudoers file backup
+  command: cp -f /etc/sudoers /etc/sudoers.bak
+
+- name: make sure we can do passwordless sudo as sudo group
+  lineinfile: dest=/etc/sudoers.tmp state=present regexp='^%sudo' line='%sudo ALL=(ALL:ALL) NOPASSWD:ALL'
+
+- name: Final sudoers file check
+  shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers

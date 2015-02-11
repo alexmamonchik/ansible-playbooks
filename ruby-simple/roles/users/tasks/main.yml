@@ -1,0 +1,7 @@
+- user: name=deploy comment="Deploy User" shell=/bin/bash groups=sudo
+
+- name: Set up authorized_keys for the deploy user
+  authorized_key: user=deploy
+                  key="{{ item }}"
+  with_file:
+    - deploy_authorized_keys

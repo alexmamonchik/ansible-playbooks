@@ -1,13 +1,24 @@
 ---
 
 - name: Install ruby and dependencies
-  hosts: all
-  remote_user: deploy
+  hosts: staging
+  remote_user: scot
   sudo: yes
 
+  vars:
+    rbenv:
+      env: user
+      version: v0.4.0
+      ruby_version: 2.0.0-p481
+
   roles:
-    - git
-    - nginx
-    - zzet.rbenv
-    - pjan.vandaele.postgresql
+          #    - git
+          #    - nginx
+    - users
+    - sudo
+    - deploy
+    - role: zzet.rbenv
+      rbenv_users:
+        - deploy
+          #    - pjan.vandaele.postgresql
 
