@@ -1,0 +1,4 @@
+#!/bin/sh
+cd {{ app_root }}/current
+exec 2>&1
+exec chpst -udeploy /home/deploy/.rbenv/shims/bundle exec sidekiq -C config/sidekiq.yml -r ./app.rb -e staging -P tmp/pids/sidekiq.pid

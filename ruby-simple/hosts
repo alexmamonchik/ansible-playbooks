@@ -1,0 +1,32 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+# Ex 1: Ungrouped hosts, specify before any group headers.
+
+
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+
+[staging]
+104.154.75.12
+[production]
+easypaint.com
+
+[production:vars]
+env=production
+app_root=/var/www/easypaint-api
+[staging:vars]
+env=staging
+app_root=/var/www/dev-easypaint-api
+
+#[jenkins]
+#104.154.54.217
+
+# If you have multiple hosts following a pattern you can specify
+# them like this:

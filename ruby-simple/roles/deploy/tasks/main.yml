@@ -2,10 +2,37 @@
 - file: path=/var/www/dev-easypaint-api owner=deploy group=deploy mode=0755 state=directory
 - file: path=/var/www/dev-easypaint-api/shared owner=deploy group=deploy mode=0755 state=directory
 - file: path=/var/www/dev-easypaint-api/shared/config owner=deploy group=deploy mode=0755 state=directory
-#- copy: src=.env dest=/var/www/dev-easypaint-api/shared/.env owner=deploy group=deploy mode=0644
 - copy: src=unicorn.rb dest=/var/www/dev-easypaint-api/shared/config/unicorn.rb owner=deploy group=deploy mode=0644
 - name: Install Bundler
   command: su - deploy -c 'bash -lc "rbenv exec gem install bundler"'
 - apt: name=libpq-dev update_cache=yes
 - postgresql_user: name=postgres password=privetrivet
 - postgresql_user: name=deploy role_attr_flags=CREATEDB
+
+# setup sidekiq to run with runit
+- name: create runit directory for sidekiq
+  file: path=/etc/sv/sidekiq state=directory
+
+- name: create log directory
+  file: path=/etc/sv/sidekiq/log state=directory
+
+- name: create loging file
+  file: path=/var/log/sidekiq owner=deploy group=deploy state=directory
+
+- name: create pid dir
+  file: path=/var/run/sidekiq state=directory
+
+- name: create pid file
+  file: path=/var/run/sidekiq/sidekiq.pid owner=deploy group=deploy mode=0644 state=touch
+
+- name: copy over log script
+  copy: src=sidekiq_log dest=/etc/sv/sidekiq/log/run owner=root group=root mode=0755
+
+- name: copy over run script for sidekiq
+  template: src=sidekiq_run dest=/etc/sv/sidekiq/run owner=root group=root mode=0755
+
+- name: create link from sv to server directory
+  file: src=/etc/sv/sidekiq dest=/etc/service/sidekiq state=link
+
+- name: start sidekiq runit service 
+  runit: name=sidekiq state=started

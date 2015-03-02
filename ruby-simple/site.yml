@@ -12,13 +12,15 @@
       ruby_version: 2.0.0-p481
 
   roles:
-          #    - git
+    - bakins.runit
+    - git
     - nginx
     - users
     - sudo
     - deploy
-    - role: zzet.rbenv
-      rbenv_users:
-        - deploy
-          #    - pjan.vandaele.postgresql
+    - DavidWittman.redis
+#    - role: zzet.rbenv
+#      rbenv_users:
+#        - deploy
+#    - pjan.vandaele.postgresql
 
