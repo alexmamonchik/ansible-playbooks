@@ -1,7 +1,7 @@
 ---
 
 - name: Install ruby and dependencies
-  hosts: staging
+  hosts: production
   remote_user: scot
   sudo: yes
 
@@ -17,10 +17,10 @@
     - nginx
     - users
     - sudo
-    - deploy
+    - role: zzet.rbenv
+      rbenv_users:
+        - deploy
     - DavidWittman.redis
-#    - role: zzet.rbenv
-#      rbenv_users:
-#        - deploy
-#    - pjan.vandaele.postgresql
+    - pjan.vandaele.postgresql
+    - deploy
 

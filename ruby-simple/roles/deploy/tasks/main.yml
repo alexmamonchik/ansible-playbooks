@@ -1,8 +1,8 @@
 - file: path=/var/www owner=deploy group=deploy mode=0755 state=directory
-- file: path=/var/www/dev-easypaint-api owner=deploy group=deploy mode=0755 state=directory
-- file: path=/var/www/dev-easypaint-api/shared owner=deploy group=deploy mode=0755 state=directory
-- file: path=/var/www/dev-easypaint-api/shared/config owner=deploy group=deploy mode=0755 state=directory
-- copy: src=unicorn.rb dest=/var/www/dev-easypaint-api/shared/config/unicorn.rb owner=deploy group=deploy mode=0644
+- file: path={{ app_root }} owner=deploy group=deploy mode=0755 state=directory
+- file: path={{ app_root }}/shared owner=deploy group=deploy mode=0755 state=directory
+- file: path={{ app_root }}/shared/config owner=deploy group=deploy mode=0755 state=directory
+- copy: src=unicorn.rb dest={{ app_root }}/shared/config/unicorn.rb owner=deploy group=deploy mode=0644
 - name: Install Bundler
   command: su - deploy -c 'bash -lc "rbenv exec gem install bundler"'
 - apt: name=libpq-dev update_cache=yes

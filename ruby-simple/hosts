@@ -16,7 +16,7 @@
 [staging]
 104.154.75.12
 [production]
-easypaint.com
+146.148.82.10
 
 [production:vars]
 env=production
