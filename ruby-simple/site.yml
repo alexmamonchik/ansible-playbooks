@@ -10,17 +10,24 @@
       env: user
       version: v0.4.0
       ruby_version: 2.0.0-p481
+    #php5-fpm
+    max_children: 5
+    start_servers: 2
+    min_spare_servers: 2
+    max_spare_servers: 4
 
   roles:
-    - bakins.runit
-    - git
+          #- bakins.runit
+          #    - bennojoy.mysql
+    - php-fpm
+      #- git
     - nginx
-    - users
-    - sudo
-    - role: zzet.rbenv
-      rbenv_users:
-        - deploy
-    - DavidWittman.redis
-    - pjan.vandaele.postgresql
-    - deploy
+      #- users
+      #- sudo
+      #- role: zzet.rbenv
+      #  rbenv_users:
+      #    - deploy
+      #- DavidWittman.redis
+      #- pjan.vandaele.postgresql
+      #- deploy
 

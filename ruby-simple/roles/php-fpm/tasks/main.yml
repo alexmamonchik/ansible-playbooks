@@ -1,0 +1,20 @@
+---      
+   - name: install php-fpm 
+     action: apt name=php5-fpm state=installed    
+
+   - name: php install needed modules
+     action: apt name={{ item }} state=installed    
+     with_items: 
+        - php5-common
+        - php5-curl
+        - php5-gd
+        - php5-mysql
+
+   - name: service run php5-fpm 
+     action: service name=php5-fpm state=started 
+
+   - name: fpm config
+     action: template src='www.conf' dest='/etc/php5/fpm/pool.d/www.conf'
+     notify: 
+       - restart php5-fpm
+

@@ -14,5 +14,6 @@ My playbooks
 ```
 $ ansible-galaxy install zzet.rbenv
 $ ansible-galaxy install pjan.vandaele.postgresql
+$ ansible-galaxy install bennojoy.mysql
 $ ansible-playbook site.yml -i hosts --ask-sudo-pass
 ```
