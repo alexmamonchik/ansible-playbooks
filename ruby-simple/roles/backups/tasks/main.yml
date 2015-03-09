@@ -1,0 +1,12 @@
+
+# install gsutil
+- file: path=/home/deploy/database_backup/gsutil state=directory recurse=true owner=deploy group=deploy
+- unarchive: src=gsutil.tar.gz dest=/home/deploy/database_backup owner=deploy group=deploy
+
+- copy: src=backup_mysql.sh dest=/home/deploy/database_backup/backup_mysql.sh mode=755 owner=deploy group=deploy
+- copy: src=backup_postgres.sh dest=/home/deploy/database_backup/backup_postgres.sh mode=755 owner=deploy group=deploy
+
+
+
+- cron: name="backup mysql" user=deploy minute="11" hour="22" job="/home/deploy/database_backup/backup_mysql.sh >> /home/deploy/database_backup/backup_mysql.log 2>&1"
+- cron: name="backup postgres" user=deploy minute="1" hour="22" job="/home/deploy/database_backup/backup_postgres.sh >> /home/deploy/database_backup/backup_postgres.log 2>&1"

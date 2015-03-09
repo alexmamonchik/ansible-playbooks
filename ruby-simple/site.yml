@@ -19,9 +19,9 @@
   roles:
           #- bakins.runit
           #    - bennojoy.mysql
-    - php-fpm
+          #- php-fpm
       #- git
-    - nginx
+      #- nginx
       #- users
       #- sudo
       #- role: zzet.rbenv
@@ -30,4 +30,5 @@
       #- DavidWittman.redis
       #- pjan.vandaele.postgresql
       #- deploy
+    - backups
 
