@@ -6,7 +6,7 @@
 - name: Install Bundler
   command: su - deploy -c 'bash -lc "rbenv exec gem install bundler"'
 - apt: name=libpq-dev update_cache=yes
-- postgresql_user: name=postgres password=privetrivet
+#- postgresql_user: name=postgres password=*********
 - postgresql_user: name=deploy role_attr_flags=CREATEDB
 
 # setup sidekiq to run with runit
